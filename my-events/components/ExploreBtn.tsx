@@ -3,7 +3,7 @@ import Image from "next/image"
 
 const ExploreBtn = () => {
     return (
-        <a href="#events" className="inline-block">
+        <a href="#events" className="">
             <button
                 type="button"
                 id="explore-btn"
