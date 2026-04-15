@@ -85,7 +85,7 @@ const EventSchema = new Schema<IEvent>(
   { timestamps: true }
 );
 
-// ✅ FIXED (no async + next conflict)
+// Keep the slug in sync with the title when creating an event or renaming it.
 EventSchema.pre('save', function () {
   const event = this as IEvent;
 
