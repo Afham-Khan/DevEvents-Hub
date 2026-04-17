@@ -1,0 +1,61 @@
+$kind: http-request
+name: http://localhost:3000/api/events
+url: http://localhost:3000/api/events
+method: GET
+body:
+  type: formdata
+  content:
+    - type: text
+      key: title
+      value: Tech Summit 2027
+      disabled: false
+    - type: text
+      key: description
+      value: A premier technology conference
+      disabled: false
+    - type: text
+      key: overview
+      value: Join us for a day of tech talks and networking
+      disabled: false
+    - type: file
+      key: image
+      src:
+        - /C:/Users/user/Desktop/WEB DEVP/Ph0tos/event1.webp
+      disabled: false
+    - type: text
+      key: venue
+      value: Convention Center
+      disabled: false
+    - type: text
+      key: location
+      value: New York, NY
+      disabled: false
+    - type: text
+      key: date
+      value: 2026-05-20
+      disabled: false
+    - type: text
+      key: time
+      value: 09:00 AM
+      disabled: false
+    - type: text
+      key: mode
+      value: offline
+      disabled: false
+    - type: text
+      key: audience
+      value: Developers and Tech Enthusiasts
+      disabled: false
+    - type: text
+      key: agenda
+      value: Opening Keynote,Workshop Sessions,Networking Lunch
+      disabled: false
+    - type: text
+      key: organizer
+      value: Tech Events Inc.
+      disabled: false
+    - type: text
+      key: tags
+      value: technology,conference,networking
+      disabled: false
+order: 16726879891158

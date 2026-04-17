@@ -1,0 +1,18 @@
+$kind: http-request
+name: http://localhost:3000/api/events
+url: http://localhost:3000/api/events
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: '{"title":"Tech Conference 2026","description":"A premier technology
+    conference featuring the latest innovations.","overview":"Join us for a day
+    of inspiring talks, workshops, and networking with industry
+    leaders.","image":"https://example.com/tech-conference.jpg","venue":"Convention
+    Center","location":"New York, NY","date":"2026-06-15","time":"09:00 AM -
+    05:00 PM","mode":"hybrid","audience":"Developers and tech
+    enthusiasts","agenda":["Opening Keynote","Workshop: Building APIs","Panel
+    Discussion","Networking Lunch","Closing Remarks"],"organizer":"TechEvents
+    Inc.","tags":["technology","conference","networking","workshops"]}'
+order: 1776427123691
