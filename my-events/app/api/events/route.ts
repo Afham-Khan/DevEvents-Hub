@@ -9,10 +9,12 @@ export async function POST(req: NextRequest) {
 
     const formData = await req.formData();
 
-    let event;
+    let event: Record<string, unknown>;
 
     try {
       event = Object.fromEntries(formData.entries());
+      event.tags = typeof event.tags === 'string' ? (event.tags as string).split(",") : [];
+      event.agenda = typeof event.agenda === 'string' ? (event.agenda as string).split(",") : [];
     } catch (e) {
       return NextResponse.json(
         { message: "Invalid JSON data format" },
@@ -76,7 +78,7 @@ export async function GET() {
     );
   } catch (error) {
     return NextResponse.json(
-      { message: "Event not found" , error: error },
+      { message: "Event not found", error: error },
       { status: 404 },
     );
   }

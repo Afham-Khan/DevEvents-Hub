@@ -16,7 +16,7 @@ interface Props {
 const EventsCard = ({ title, image, slug, date, time, location }: Props) => {
     // typescripts wants to know what will be the types of props so u should declare at very first
     return (
-        <Link href={"/events"} id="event-card">
+        <Link href={`/events/${slug}`} id="event-card">
             <Image
                 src={image}
                 alt={title}

@@ -2,17 +2,46 @@ $kind: http-request
 name: http://localhost:3000/api/events
 url: http://localhost:3000/api/events
 method: POST
-headers:
-  Content-Type: application/json
 body:
-  type: json
-  content: '{"title":"Tech Conference 2026","description":"A premier technology
-    conference featuring the latest innovations.","overview":"Join us for a day
-    of inspiring talks, workshops, and networking with industry
-    leaders.","image":"https://example.com/tech-conference.jpg","venue":"Convention
-    Center","location":"New York, NY","date":"2026-06-15","time":"09:00 AM -
-    05:00 PM","mode":"hybrid","audience":"Developers and tech
-    enthusiasts","agenda":["Opening Keynote","Workshop: Building APIs","Panel
-    Discussion","Networking Lunch","Closing Remarks"],"organizer":"TechEvents
-    Inc.","tags":["technology","conference","networking","workshops"]}'
+  type: formdata
+  content:
+    - key: title
+      value: 'Tech Summit 2027'
+      type: text
+    - key: description
+      value: 'A premier technology conference'
+      type: text
+    - key: overview
+      value: 'Join us for a day of tech talks and networking'
+      type: text
+    - key: image
+      type: file
+      src: '/C:/Users/user/Desktop/WEB DEVP/Ph0tos/images.jfif'
+    - key: venue
+      value: 'Convention Center'
+      type: text
+    - key: location
+      value: 'New York, NY'
+      type: text
+    - key: date
+      value: '2026-05-20'
+      type: text
+    - key: time
+      value: '09:00 AM'
+      type: text
+    - key: mode
+      value: 'offline'
+      type: text
+    - key: audience
+      value: 'Developers and Tech Enthusiasts'
+      type: text
+    - key: agenda
+      value: 'Opening Keynote,Workshop Sessions,Networking Lunch'
+      type: text
+    - key: organizer
+      value: 'Tech Events Inc.'
+      type: text
+    - key: tags
+      value: 'technology,conference,networking'
+      type: text
 order: 1776427123691
