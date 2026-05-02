@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation"
+import BookingEvent from "../../../components/BookingEvent"
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
@@ -90,7 +91,21 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
 
         {/* right side */}
         <aside className="booking">
-          <p className="text-lg font-semibold">Book Event</p>
+          <p className="text-lg font-semibold mb-2">Book Event</p>
+          <div className= "signup-card">
+            {
+              event.bookings > 0 ? (
+              <p className="text-sm">
+                Join {event.bookings} people who have already booked this event
+              </p>
+              ) : (
+              <p className="text-sm">
+                Be the first to book this event
+              </p>
+            )}
+
+            <BookingEvent />
+          </div>
         </aside>
 
       </div>
