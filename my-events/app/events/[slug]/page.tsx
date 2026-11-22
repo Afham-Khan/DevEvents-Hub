@@ -1,7 +1,13 @@
 import { notFound } from "next/navigation"
 import BookingEvent from "../../../components/BookingEvent"
+import EventsCard from "@/components/EventsCard"
+import {
+  getBookingsCount,
+  getEventBySlug,
+  getSimilarEventsBySlug,
+} from "@/lib/actions/events.actions"
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+export const dynamic = "force-dynamic"
 
 const EventDetailsItem = ({ icon, alt, label }: { icon: string, alt: string, label: string }) => {
   return (
@@ -39,10 +45,14 @@ const EventsTags = ({ tags }: { tags: string[] }) => {
 const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
   const { slug } = await params
-  const requestUrl = await fetch(`${BASE_URL}/api/events/${slug}`)
-  const { event } = await requestUrl.json()
+  const event = await getEventBySlug(slug)
 
   if (!event) return notFound()
+
+  const [bookings, similarEvents] = await Promise.all([
+    getBookingsCount(event._id),
+    getSimilarEventsBySlug(slug),
+  ])
 
   return (
     <section id="event">
@@ -94,9 +104,9 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
           <p className="text-lg font-semibold mb-2">Book Event</p>
           <div className= "signup-card">
             {
-              event.bookings > 0 ? (
+              bookings > 0 ? (
               <p className="text-sm">
-                Join {event.bookings} people who have already booked this event
+                Join {bookings} people who have already booked this event
               </p>
               ) : (
               <p className="text-sm">
@@ -104,10 +114,27 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
               </p>
             )}
 
-            <BookingEvent />
+            <BookingEvent eventId={event._id} />
           </div>
         </aside>
 
+      </div>
+
+      <div className="flex w-full flex-col gap-4 pt-20">
+        <h2>Similar Events</h2>
+        <div className="events">
+          {similarEvents.length > 0 ? similarEvents.map((e) => (
+            <EventsCard
+              key={e.slug}
+              title={e.title}
+              image={e.image}
+              slug={e.slug}
+              date={e.date}
+              time={e.time}
+              location={e.location}
+            />
+          )) : <p>No similar events found.</p>}
+        </div>
       </div>
 
 

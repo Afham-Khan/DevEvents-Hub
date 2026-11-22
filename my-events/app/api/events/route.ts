@@ -13,8 +13,10 @@ export async function POST(req: NextRequest) {
 
     try {
       event = Object.fromEntries(formData.entries());
-      event.tags = typeof event.tags === 'string' ? (event.tags as string).split(",") : [];
-      event.agenda = typeof event.agenda === 'string' ? (event.agenda as string).split(",") : [];
+      const toList = (v: unknown) =>
+        typeof v === 'string' ? v.split(",").map((s) => s.trim()).filter(Boolean) : [];
+      event.tags = toList(event.tags);
+      event.agenda = toList(event.agenda);
     } catch (e) {
       return NextResponse.json(
         { message: "Invalid JSON data format" },
